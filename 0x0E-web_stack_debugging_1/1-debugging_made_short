@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
-#congure Nginx sever to listen on port 80
-
-# creates a symbolic link (-s option) between the nginx confuguration file and
-# the enabled sites directory
-ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-#restart enginx
+# A bash script that fixes nginx not running
+sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
 service nginx restart
-# terminates the first nginx process IO
-kill "$(pgrep 'nginx' | head -1)"
+pkill -o nginx
